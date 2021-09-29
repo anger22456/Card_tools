@@ -181,7 +181,7 @@ header{
   }
   .imgpart{
       width: 100%;
-      background: url('../image/pic.PNG');
+      background: url('https://github.com/anger22456/anger22456.github.io/tree/main/%E7%89%8C%E5%8D%A13.0/image/pic.PNG');
       background-size: contain;
       height: 30%;
   }
@@ -214,7 +214,7 @@ header{
   .carddiv button{
     float: left;
     display: inline-block;
-    background: url("../image/remove.PNG");
+    background: url("https://github.com/anger22456/anger22456.github.io/tree/main/%E7%89%8C%E5%8D%A13.0/image/remove.PNG");
     background-size: cover;
     border-radius: 100%;
     padding: 10px 10px;
@@ -225,7 +225,7 @@ header{
   .contentdiv button{
     float: right;
     display: inline-block;
-    background: url("../image/remove.PNG");
+    background: url("https://github.com/anger22456/anger22456.github.io/tree/main/%E7%89%8C%E5%8D%A13.0/image/remove.PNG");
     background-size: cover;
     border-radius: 100%;
     padding: 10px 10px;
