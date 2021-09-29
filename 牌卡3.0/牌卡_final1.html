@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset = "utf-8" >
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+  <!-- google fonts css-->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Open+Sans&display=swap" rel="stylesheet">
+  <!-- Swiper-->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <!-- using bootstrap framework -->
+
+  <!-- Pagation 的css需要使用的版本 會和我用的版本衝突-->
+  <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
+  <link rel="stylesheet" href="css/bootstrap_old.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>-->
+  <script src="javascript/bootstrap.min.js"></script>
+  <!-- our own css must be the bottom of all css file to overwrite them-->
+  <link rel="stylesheet" href="css/resetbrowser.css">
+  <!--css 會被php server 緩存 所以要加  echo time();  -->
+  <link rel="stylesheet" href="css/homepage.css">
+  
+  
+  
+  
+  <script type = 'text/javascript'>
+  /*按下確認鍵後會接到的function*/
+    function addCard(){
+      /*
+      number是牌卡數量輸入匡中的數字
+      btnnum是中間裝入牌卡的div
+      submit是底層裝入submitbtn的div
+      */
+      var number = document.getElementById("cardnum").value;
+      var btnnum = document.getElementById("btnnum");
+      var submit = document.getElementById("submit");
+            /*如果btnnum和submit的div有東西會先清掉*/
+            while (btnnum.hasChildNodes()) {
+                btnnum.removeChild(btnnum.lastChild);
+            }
+            while (submit.hasChildNodes()) {
+                submit.removeChild(submit.lastChild);
+            }
+
+            /*在number的範圍內，建立每一個牌卡的內容*/
+            for (i=0;i<number;i++){
+                /*建立fieldset用以裝入該個牌卡的內容*/
+                var cardfield = document.createElement("fieldset");
+                cardfield.id = "card"+ (i+1);
+                cardfield.className = "carddiv";
+                btnnum.appendChild(cardfield);
+                
+                var cardname = document.createTextNode("-牌卡 " + (i+1) + "- ");
+                cardname.id = "cardname" + (i+1);
+                cardfield.appendChild(cardname);
+
+                // var carddelbtn = document.createElement("button");
+                // carddelbtn.id = "carddelbtn" + (i+1);
+                // carddelbtn.appendChild(document.createTextNode("刪除"));
+                
+                /*刪除牌卡的按鈕*/
+                // carddelbtn.onclick = function(){
+                //   var carddivlen = document.getElementsByClassName("carddiv").length;
+                //   for(m = 1; m<= carddivlen; m++){
+                //     if(event.target.id == "carddelbtn" + m){
+                //         document.getElementById("btnnum").removeChild(document.getElementById("card"+m));
+                //         var cardlist = document.getElementsByClassName("carddiv");
+                //         //alert(document.getElementById("card1").textContent);
+                //         // for(z = m+1; z <= carddivlen; z++){
+                          
+                //         // }
+
+
+                //         while(document.getElementById("card"+(m+1))!="null"){
+                //           nameElementlist = document.getElementsByName("button" + (m+1));
+                //           const picurl = document.getElementById("picurl" + (m+1)).value;
+                //           const pictext = document.getElementById("pictext" + (m+1)).value;
+                //           const cardtitle = document.getElementById("cardtitle" + (m+1)).value;
+                //           const payloadList = document.getElementsByName("payload" + (m+1));
+
+                //           var div = $("#card"+(m+1));
+                //           var nextText = div.html().replace("-牌卡 " + (m+1) + "-", "-牌卡 " + m + "-");
+                //           div.html(nextText);
+
+                //           document.getElementById("card" + (m+1)).id = "card"+m;
+                //           document.getElementById("carddelbtn" + (m+1)).id = "carddelbtn"+m;
+                //           document.getElementById("cardinput"+(m+1)).id = "cardinput"+m;
+                //           document.getElementById("cardinput"+m).name = "hellobtn"+m;
+                //           document.getElementById("btn"+(m+1)).id = "btn"+m;
+                //           document.getElementById("div"+(m+1)).id = "div"+m;
+                //           document.getElementById("addbtndiv"+(m+1)).id = "addbtndiv"+m;
+                //           document.getElementById("picurl"+(m+1)).id = "picurl"+m;
+                //           document.getElementById("pictext"+(m+1)).id = "pictext"+m;
+                //           document.getElementById("cardtitle"+(m+1)).id = "cardtitle"+m;
+                //           document.getElementById("add"+(m+1)).id = "add"+m;
+
+                //           document.getElementById("picurl"+m).value = picurl;
+                //           document.getElementById("pictext"+m).value = pictext;
+                //           document.getElementById("cardtitle"+m).value = cardtitle;
+
+                //           var len = document.getElementsByName("button"+(m+1)).length;
+                //           for(n = 1; n <= len; n++){
+                //             document.getElementById("field"+(m+1)+n).id = "field" + m + n;
+                //             document.getElementById("btninput"+(m+1)+n).id = "btninput" + m + n;
+                //             document.getElementById("btninput"+m+n).name = "button" + m;
+                //             //document.getElementById("btninput"+m+n).value = nameElementlist[n-1].value;
+                //             document.getElementById("payload"+(m+1)+n).id = "payload" + m + n;
+                //             document.getElementById("payload"+m+n).name = "payload" + m;
+                //             //document.getElementById("payload"+m+n).value = payloadList[n-1].value;
+                //             document.getElementById("del"+(m+1)+n).id = "del" + m + n;
+                //             document.getElementById("del"+m+n).name = "del" + m;
+                //           }
+
+                          
+                //           // for(o = 1; o<=len; o++){
+                //           //   document.getElementById("btninput"+m+o).value = nameElementlist[o-1].value;
+                //           //   document.getElementById("payload"+m+o).value = payloadList[o-1].value;
+                //           // }
+
+                //           m = m+1;
+                //         }
+                      
+                      
+                //       // for(n = m+1; n <= document.getElementsByClassName("carddiv").length; n++){
+                //       //   var div = $("#card"+n);
+                //       //   var nextText = div.html().replace("-牌卡 " + (n) + "-", "-牌卡 " + (n-1) + "-");
+                //       //   div.html(nextText);
+                //       //   //document.getElementById("card" + n).value = "-牌卡 " + (n-1) + "- 刪除 請輸入按鈕數量：確認!";
+                //       // }
+                //     }
+                //   }
+                // }
+
+                //cardfield.appendChild(carddelbtn);
+                
+                cardfield.appendChild(document.createElement("br"));
+                
+                cardfield.appendChild(document.createTextNode(" 請輸入按鈕數量："));
+                //Create an <input> element, set its type and name attributes
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "hellobtn" + (i+1);
+                input.id = "cardinput" + (i+1);
+                cardfield.appendChild(input);
+
+                var btn = document.createElement("button");
+                btn.id = "btn"+ (i+1);
+                btn.appendChild(document.createTextNode("確認!"));
+                cardfield.appendChild(btn);
+                
+                /*每個牌卡之中，輸入完按鈕數量後，按下確認鍵所接的function*/
+                document.getElementById("btn" + (i+1)).onclick = function(){
+                  for(j = 1; j<=document.getElementsByClassName("carddiv").length; j++){
+                    if(event.target.id == "btn"+j){
+                      var newdiv = document.createElement("div");
+                      newdiv.id = "div" + j;
+                      newdiv.className = "contentdiv";
+                      var thisdiv = document.getElementById("div"+j);
+                      if (document.getElementById("card" + j).contains(thisdiv)){
+                        thisdiv.remove();
+                        document.getElementById("card" + j).appendChild(newdiv);
+                      }
+                      else{
+                        document.getElementById("card" + j).appendChild(newdiv);
+                      }
+                      var buttonnum = document.getElementById("cardinput"+j).value;
+                      
+
+                      newdiv.appendChild(document.createTextNode("圖片URL位置"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var picurl = document.createElement("input");
+                      picurl.type = "text";
+                      picurl.id = "picurl" + j;
+                      newdiv.appendChild(picurl);
+                      newdiv.appendChild(document.createElement("br"));
+                      newdiv.appendChild(document.createTextNode("圖片內嵌入文字"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var pictext = document.createElement("input");
+                      pictext.type = "text";
+                      pictext.id = "pictext" + j;
+                      newdiv.appendChild(pictext);
+                      newdiv.appendChild(document.createElement("br"));
+
+                      newdiv.appendChild(document.createTextNode("牌卡標題"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var cardtitle = document.createElement("input");
+                      cardtitle.type = "text";
+                      cardtitle.id = "cardtitle" + j;
+                      newdiv.appendChild(cardtitle);
+                      newdiv.appendChild(document.createElement("br"));
+
+
+                      for (i = 0; i<buttonnum; i++){
+                        var field = document.createElement("fieldset");
+                        field.id = "field" + j + (i+1);
+                        var btnname = document.createTextNode("---按鈕 " + (i+1) + "---");
+                        btnname.id = "btnname" + j + (i+1);
+                        field.appendChild(btnname);
+                        field.appendChild(document.createElement("br"));
+                          
+                        var btninput = document.createElement("input");
+                        btninput.type = "text";
+                        btninput.name = "button" + j;
+                        btninput.id = "btninput" + j + (i+1);
+                        field.appendChild(btninput);
+
+                        var payload = document.createElement("input");
+                        payload.type = "text";
+                        payload.name = "payload" + j;
+                        payload.id = "payload" + j + (i+1);
+                        payload.value = '請輸入payload';  
+                        payload.defaultValue = '請輸入payload';
+
+                        payload.onfocus = function(){
+                          for(m = 1; m <=number; m++){
+                            for(n = 0; n < buttonnum; n++){
+                              if(event.target.id == "payload"+m+(n+1)){
+                                document.getElementById("payload"+m+(n+1)).value = "";
+                              }
+                            }
+                          }
+                        }
+
+                        //document.getElementById("payload" + j + (i+1)).default = "如和btn不同，請輸入Payload";
+                        field.appendChild(payload);
+
+                        /* delete button*/
+                        var delbtn = document.createElement("button");
+                        delbtn.name = "del" + j;
+                        delbtn.id = "del" + j + (i+1);
+                        //delbtn.appendChild(document.createTextNode("刪除"));
+                        field.appendChild(delbtn);
+
+                        /*刪除問題按鈕的function*/
+                        delbtn.onclick = function(){
+                          for(m = 1; m <= document.getElementsByClassName("carddiv").length; m++){
+                            var inputnum = document.getElementsByName("button"+m).length;
+                            const nameElementlist = document.getElementsByName("button" + m);
+                            for(n = 0; n < inputnum; n++){
+                              if(event.target.id == "del" + m + (n+1)){
+                                var lasttitle = nameElementlist[nameElementlist.length-1].value;
+                                document.getElementById("div"+m).removeChild(document.getElementById("field"+m+inputnum));
+                                // alert(nameElementlist);
+                                var clickbar = (n+1);
+                                for(o = clickbar; o <= nameElementlist.length; o++){
+                                  if(o == nameElementlist.length){
+                                    document.getElementById("btninput"+m+o).value = lasttitle;
+                                  }
+                                  else{
+                                    document.getElementById("btninput"+m+o).value = nameElementlist[o].value;
+                                  }
+                                }
+                              }
+                              else{
+                                continue;
+                              }
+                            }
+                          }
+                        }
+
+                        field.appendChild(document.createElement("br"));
+                        newdiv.appendChild(field);
+                      }
+
+                      var addbtndiv = document.createElement("div");
+                      addbtndiv.id = 'addbtndiv' + j;
+
+                      var thisadddiv = document.getElementById('addbtndiv'+j);
+                      if (document.getElementById("card" + j).contains(thisadddiv)){
+                        thisadddiv.remove();
+                        document.getElementById("card" + j).appendChild(addbtndiv);
+                      }
+                      else{
+                        document.getElementById("card" + j).appendChild(addbtndiv);
+                      }
+
+                      var addbtn = document.createElement("button");
+                      addbtn.id = "add" + j;
+                      addbtn.className = 'add';
+                      addbtn.appendChild(document.createTextNode("+"));
+
+                      /*新增問題按鈕的邏輯*/
+                      addbtn.onclick = function(){
+                        for(i = 1; i <= document.getElementsByClassName("carddiv").length; i++){
+                          if(event.target.id == "add"+i){
+                            var inputnum = document.getElementsByName("button"+i).length;
+                            //document.getElementById("div"+i).appendChild(document.createElement("br"));
+                            var field = document.createElement("fieldset");
+                            field.id = "field" + i + (inputnum+1);
+                            field.appendChild(document.createTextNode("---按鈕 " + (inputnum+1) + "---"));
+                            field.appendChild(document.createElement("br"));
+                            var newbtninput = document.createElement("input");
+                            newbtninput.type = 'text';
+                            newbtninput.name = "button" + i;
+                            newbtninput.id = "btninput" + i + (inputnum+1);
+                            field.appendChild(newbtninput);
+
+                            var newpayload = document.createElement("input");
+                            newpayload.type = 'text';
+                            newpayload.name = "payload" + i;
+                            newpayload.id = "payload" + i + (inputnum+1);
+                            
+                            newpayload.onfocus = function(){
+                              var number = document.getElementById("cardnum").value;
+                              for(m = 1; m <= number; m++){
+                                var inputnum = document.getElementsByName("button"+i).length;
+                                for(n = 0; n < inputnum; n++){
+                                  if(event.target.id == "payload"+m+(n+1)){
+                                    document.getElementById("payload"+m+(n+1)).value = "";
+                                  }
+                                }
+                              }
+                            }
+
+                            field.appendChild(newpayload);
+
+                            var newdelbtn = document.createElement("button");
+                            newdelbtn.name = "del" + i;
+                            newdelbtn.id = "del" + i + (inputnum+1);
+                            field.appendChild(newdelbtn);
+
+                            /*新增的問題所需要順便新增刪除問題按鈕的邏輯*/
+                            newdelbtn.onclick = function(){
+                              for(m = 1; m <= document.getElementsByClassName("carddiv").length; m++){
+                                var inputnum = document.getElementsByName("button"+m).length;
+                                const nameElementlist = document.getElementsByName("button" + m);
+                                for(n = 0; n < inputnum; n++){
+                                  if(event.target.id == "del" + m + (n+1)){
+                                    var lasttitle = nameElementlist[nameElementlist.length-1].value;
+                                    document.getElementById("div"+m).removeChild(document.getElementById("field"+m+inputnum));
+                                    var clickbar = (n+1);
+                                    for(o = clickbar; o <= nameElementlist.length; o++){
+                                      if(o == nameElementlist.length){
+                                        document.getElementById("btninput"+m+o).value = lasttitle;
+                                      }
+                                      else{
+                                        document.getElementById("btninput"+m+o).value = nameElementlist[o].value;
+                                      } 
+                                    }
+                                  }
+                                }
+                              }
+                            }
+
+                            field.appendChild(document.createElement("br"));
+                            document.getElementById("div"+i).appendChild(field);
+                          }
+                        }
+                      }
+                      addbtndiv.appendChild(addbtn);
+                    }
+                  }
+
+                }             
+                cardfield.appendChild(document.createElement("br"));
+
+                // Append a line break 
+                cardfield.appendChild(document.createElement("br"));
+            }
+
+            cardfield.appendChild(document.createElement("br"));
+            
+
+            var addcardbtn = document.createElement("button");
+            addcardbtn.className = "addcard";
+            addcardbtn.appendChild(document.createTextNode("增加牌卡"));
+            submit.appendChild(addcardbtn);
+            submit.appendChild(document.createElement("br"));
+
+
+            /*加入卡片的按鈕的function*/
+            addcardbtn.onclick = function(){
+              var cardnumber = document.getElementsByClassName("carddiv").length;
+              var cardfield = document.createElement("fieldset");
+              cardfield.id = "card"+ (cardnumber+1);
+              cardfield.className = "carddiv";
+              // var newcarddiv = document.createElement("div");
+              // newcarddiv.id = "card" + (cardnumber+1);
+              // newcarddiv.className = "carddiv";
+              btnnum.appendChild(cardfield);
+
+              cardfield.appendChild(document.createTextNode("-牌卡 " + (cardnumber+1) + "- "));
+              // var carddelbtn = document.createElement("button");
+              // carddelbtn.id = "carddelbtn" + (i+1);
+              // carddelbtn.appendChild(document.createTextNode("刪除"));
+              // cardfield.appendChild(carddelbtn);
+
+              cardfield.appendChild(document.createElement("br"));
+              cardfield.appendChild(document.createTextNode(" 請輸入按鈕數量："));
+              
+              //Create an <input> element, set its type and name attributes
+              var input = document.createElement("input");
+              input.type = "text";
+              input.name = "hellobtn" + (cardnumber+1);
+              input.id = "cardinput" + (cardnumber+1);
+              cardfield.appendChild(input);
+
+              var btn = document.createElement("button");
+              btn.id = "btn"+ (cardnumber+1);
+              btn.appendChild(document.createTextNode("確認!"));
+              cardfield.appendChild(btn);
+
+              btn.onclick = function(){
+                  for(j = 1; j<= document.getElementsByClassName("carddiv").length; j++){
+                    if(event.target.id == "btn"+j){
+                      var newdiv = document.createElement("div");
+                      newdiv.id = "div" + j;
+                      newdiv.className = "contentdiv"
+                      var thisdiv = document.getElementById("div"+j);
+                      if (document.getElementById("card" + j).contains(thisdiv)){
+                        thisdiv.remove();
+                        document.getElementById("card" + j).appendChild(newdiv);
+                      }
+                      else{
+                        document.getElementById("card" + j).appendChild(newdiv);
+                      }
+                      var buttonnum = document.getElementById("cardinput"+j).value;
+                        //alert("牌卡"+j+"已設定為" + buttonnum + "個按鈕");
+                      
+
+                      newdiv.appendChild(document.createTextNode("圖片URL位置"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var picurl = document.createElement("input");
+                      picurl.type = "text";
+                      picurl.id = "picurl" + j;
+                      newdiv.appendChild(picurl);
+                      newdiv.appendChild(document.createElement("br"));
+                      newdiv.appendChild(document.createTextNode("圖片內嵌入文字"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var pictext = document.createElement("input");
+                      pictext.type = "text";
+                      pictext.id = "pictext" + j;
+                      newdiv.appendChild(pictext);
+                      newdiv.appendChild(document.createElement("br"));
+
+                      newdiv.appendChild(document.createTextNode("牌卡標題"));
+                      newdiv.appendChild(document.createElement("br"));
+                      var cardtitle = document.createElement("input");
+                      cardtitle.type = "text";
+                      cardtitle.id = "cardtitle" + j;
+                      newdiv.appendChild(cardtitle);
+                      newdiv.appendChild(document.createElement("br"));
+
+                      for (i = 0; i<buttonnum; i++){
+                        var field = document.createElement("fieldset");
+                        field.id = "field" + j + (i+1);
+                        var btnname = document.createTextNode("---按鈕 " + (i+1) + "---");
+                        btnname.id = "btnname" + j + (i+1);
+                        field.appendChild(btnname);
+                        field.appendChild(document.createElement("br"));
+                          
+                        var btninput = document.createElement("input");
+                        btninput.type = "text";
+                        btninput.name = "button" + j;
+                        btninput.id = "btninput" + j + (i+1);
+                        field.appendChild(btninput);
+
+                        var payload = document.createElement("input");
+                        payload.type = "text";
+                        payload.name = "payload" + j;
+                        payload.id = "payload" + j + (i+1);
+                        payload.value = '請輸入payload';  
+                        payload.defaultValue = '請輸入payload';
+
+                        payload.onfocus = function(){
+                          for(m = 1; m <=document.getElementsByClassName("carddiv").length; m++){
+                            for(n = 0; n < buttonnum; n++){
+                              if(event.target.id == "payload"+m+(n+1)){
+                                document.getElementById("payload"+m+(n+1)).value = "";
+                              }
+                            }
+                          }
+                        }
+
+                        //document.getElementById("payload" + j + (i+1)).default = "如和btn不同，請輸入Payload";
+                        field.appendChild(payload);
+
+                        /* delete button*/
+                        var delbtn = document.createElement("button");
+                        delbtn.name = "del" + j;
+                        delbtn.id = "del" + j + (i+1);
+                        //delbtn.appendChild(document.createTextNode("刪除"));
+                        field.appendChild(delbtn);
+
+                        //刪除按鈕
+                        delbtn.onclick = function(){
+                          for(m = 1; m <= document.getElementsByClassName("carddiv").length; m++){
+                            var inputnum = document.getElementsByName("button"+m).length;
+                            const nameElementlist = document.getElementsByName("button" + m);
+                            for(n = 0; n < inputnum; n++){
+                              if(event.target.id == "del" + m + (n+1)){
+                                var lasttitle = nameElementlist[nameElementlist.length-1].value;
+                                document.getElementById("div"+m).removeChild(document.getElementById("field"+m+inputnum));
+                                // alert(nameElementlist);
+                                var clickbar = (n+1);
+                                for(o = clickbar; o <= nameElementlist.length; o++){
+                                  if(o == nameElementlist.length){
+                                    document.getElementById("btninput"+m+o).value = lasttitle;
+                                  }
+                                  else{
+                                    document.getElementById("btninput"+m+o).value = nameElementlist[o].value;
+                                  }
+                                }
+                              }
+                              else{
+                                continue;
+                              }
+                            }
+                          }
+                        }
+
+                        field.appendChild(document.createElement("br"));
+                        newdiv.appendChild(field);
+                      }
+
+                      var addbtndiv = document.createElement("div");
+                      addbtndiv.id = 'addbtndiv' + j;
+
+                      var thisadddiv = document.getElementById('addbtndiv'+j);
+                      if (document.getElementById("card" + j).contains(thisadddiv)){
+                        thisadddiv.remove();
+                        document.getElementById("card" + j).appendChild(addbtndiv);
+                      }
+                      else{
+                        document.getElementById("card" + j).appendChild(addbtndiv);
+                      }
+
+                      var addbtn = document.createElement("button");
+                      addbtn.id = "add" + j;
+                      addbtn.className = 'add';
+                      addbtn.appendChild(document.createTextNode("+"));
+
+                      //新增按鈕的邏輯
+                      addbtn.onclick = function(){
+                        for(i = 1; i <= document.getElementsByClassName("carddiv").length; i++){
+                          if(event.target.id == "add"+i){
+                            var inputnum = document.getElementsByName("button"+i).length;
+                            //document.getElementById("div"+i).appendChild(document.createElement("br"));
+                            var field = document.createElement("fieldset");
+                            field.id = "field" + i + (inputnum+1);
+                            field.appendChild(document.createTextNode("---按鈕 " + (inputnum+1) + "---"));
+                            field.appendChild(document.createElement("br"));
+                            var newbtninput = document.createElement("input");
+                            newbtninput.type = 'text';
+                            newbtninput.name = "button" + i;
+                            newbtninput.id = "btninput" + i + (inputnum+1);
+                            field.appendChild(newbtninput);
+
+                            var newpayload = document.createElement("input");
+                            newpayload.type = 'text';
+                            newpayload.name = "payload" + i;
+                            newpayload.id = "payload" + i + (inputnum+1);
+                            
+                            newpayload.onfocus = function(){
+                              var number = document.getElementById("cardnum").value;
+                              for(m = 1; m <= number; m++){
+                                var inputnum = document.getElementsByName("button"+i).length;
+                                for(n = 0; n < inputnum; n++){
+                                  if(event.target.id == "payload"+m+(n+1)){
+                                    document.getElementById("payload"+m+(n+1)).value = "";
+                                  }
+                                }
+                              }
+                            }
+
+                            field.appendChild(newpayload);
+
+                            var newdelbtn = document.createElement("button");
+                            newdelbtn.name = "del" + i;
+                            newdelbtn.id = "del" + i + (inputnum+1);
+                            field.appendChild(newdelbtn);
+
+                            newdelbtn.onclick = function(){
+                              for(m = 1; m <= document.getElementsByClassName("carddiv").length; m++){
+                                var inputnum = document.getElementsByName("button"+m).length;
+                                const nameElementlist = document.getElementsByName("button" + m);
+                                for(n = 0; n < inputnum; n++){
+                                  if(event.target.id == "del" + m + (n+1)){
+                                    var lasttitle = nameElementlist[nameElementlist.length-1].value;
+                                    document.getElementById("div"+m).removeChild(document.getElementById("field"+m+inputnum));
+                                    var clickbar = (n+1);
+                                    for(o = clickbar; o <= nameElementlist.length; o++){
+                                      if(o == nameElementlist.length){
+                                        document.getElementById("btninput"+m+o).value = lasttitle;
+                                      }
+                                      else{
+                                        document.getElementById("btninput"+m+o).value = nameElementlist[o].value;
+                                      } 
+                                    }
+                                  }
+                                }
+                              }
+                            }
+
+                            field.appendChild(document.createElement("br"));
+                            document.getElementById("div"+i).appendChild(field);
+                          }
+                        }
+                      }
+                      addbtndiv.appendChild(addbtn);
+                    }
+                  }
+              }
+              cardfield.appendChild(document.createElement("br"));
+
+              // Append a line break 
+              cardfield.appendChild(document.createElement("br"));
+            }
+
+
+
+            var submitbtn = document.createElement("button");
+            submitbtn.appendChild(document.createTextNode("確認送出"));
+            submit.appendChild(submitbtn);
+
+
+            /*表單轉成JSON格式*/
+            submitbtn.onclick = function(){
+              var btntitle;
+              var json_content = "";
+              let json_part ="";
+              var json_part_top = '[<br>&ensp;{<br>&emsp;"type":6,<br>&emsp; "list":[<br>';
+
+              var json_content_top="";
+              var json_content_bot="";
+              var but_json="";        
+              var json_part_end= '&emsp;&ensp;]<br>'+'&ensp;}'+'<br>]'; 
+                        
+              for (m = 1; m<=document.getElementsByClassName("carddiv").length; m++){
+                  
+                  const nameElementlist = document.getElementsByName("button" + m);
+                  const picurl = document.getElementById("picurl" + m).value;
+                  const pictext = document.getElementById("pictext" + m).value;
+                  const cardtitle = document.getElementById("cardtitle" + m).value;
+                  const payloadList = document.getElementsByName("payload" + m);
+
+                  //最後一個牌卡
+                  if(m == document.getElementsByClassName("carddiv").length){
+                    json_content_top = '&emsp;&ensp;&ensp;{<br>&emsp;&emsp;&ensp;"imgUrl":'+' "'+picurl+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"imgText":'+' "'+pictext+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"title":'+' "'+cardtitle+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"data":[<br>&emsp;&ensp;&ensp;&ensp;&ensp;';
+                  }
+                  else{
+                    json_content_top = '&emsp;&ensp;&ensp;{<br>&emsp;&emsp;&ensp;"imgUrl":'+' "'+picurl+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"imgText":'+' "'+pictext+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"title":'+' "'+cardtitle+'"'+',<br>'+
+                                            '&emsp;&emsp;&ensp;"data":[<br>&emsp;&ensp;&ensp;&ensp;&ensp;';
+                  }
+
+                  for (n = 0; n < nameElementlist.length; n++){
+                    if(n == (nameElementlist.length -1)){
+                        if(nameElementlist.length == 1){
+
+                          if(payloadList[n].value == "" | payloadList[n].value == "請輸入payload"){
+                            but_json = but_json + '{<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+nameElementlist[n].value+'"'+
+                                          '<br>&emsp;&ensp;&ensp;&ensp;&ensp;}<br>';
+                          }
+                          else{
+                            but_json = but_json + '{<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+payloadList[n].value+'"'+
+                                          '<br>&emsp;&ensp;&ensp;&ensp;&ensp;}<br>';
+                          }
+                        }
+                        else{
+
+                          if(payloadList[n].value == "" | payloadList[n].value == "請輸入payload"){
+                            but_json = but_json +'&emsp;&ensp;&ensp;&ensp;&ensp;{<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+nameElementlist[n].value+'"'+
+                                          '<br>&emsp;&ensp;&ensp;&ensp;&ensp;}<br>';
+                          }
+                          else{
+                            but_json = but_json +'&emsp;&ensp;&ensp;&ensp;&ensp;{<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                          '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+payloadList[n].value+'"'+
+                                          '<br>&emsp;&ensp;&ensp;&ensp;&ensp;}<br>';
+                          }
+                        }
+                    }
+                    else{
+                      if(n == 0){
+                        if(payloadList[n].value == "" | payloadList[n].value == "請輸入payload"){
+                          but_json = but_json +'{<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+nameElementlist[n].value+'"'+
+                                        '<br>&emsp;&ensp;&ensp;&ensp;&ensp;},<br>';
+                        }
+                        else{
+                          but_json = but_json +'{<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+payloadList[n].value+'"'+
+                                        '<br>&emsp;&ensp;&ensp;&ensp;&ensp;},<br>';
+                        }
+                      }
+                      else{
+                        if(payloadList[n].value == "" | payloadList[n].value == "請輸入payload"){
+                          but_json = but_json +'&emsp;&ensp;&ensp;&ensp;&ensp;{<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+nameElementlist[n].value+'"'+
+                                        '<br>&emsp;&ensp;&ensp;&ensp;&ensp;},<br>';
+                        }
+                        else{
+                          but_json = but_json +'&emsp;&ensp;&ensp;&ensp;&ensp;{<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"title":'+' "'+nameElementlist[n].value+'"'+',<br>'+
+                                        '&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;"payload":'+' "'+payloadList[n].value+'"'+
+                                        '<br>&emsp;&ensp;&ensp;&ensp;&ensp;},<br>';
+                        }
+                      }
+                    }
+                  }
+                  
+                  json_content_top = json_content_top + but_json;
+                  //清空but_json的部分以利後續的運作
+                  but_json ="";
+
+                  if(m == document.getElementsByClassName("carddiv").length){
+                      json_content_bot = '&emsp;&ensp;&ensp;&ensp;]<br>&emsp;&ensp;&ensp;}<br>';
+                  }
+                  else{
+                      json_content_bot = '&emsp;&ensp;&ensp;&ensp;]<br>&emsp;&ensp;&ensp;},<br>';
+                  }
+                  json_content =json_content +json_content_top+json_content_bot;
+              }
+
+              //最後整個json合起來    
+              json_part = json_part_top +json_content+ json_part_end;
+
+              document.getElementById("demo").innerHTML = json_part;
+
+              showhtml()
+            }
+    }
+    //表單轉成HTML格式
+    function showhtml(){
+      var swiperstart = document.getElementById("show_html");
+
+      while (swiperstart.hasChildNodes()) {
+        swiperstart.removeChild(swiperstart.lastChild);
+      }
+
+      var div1 = document.createElement("div");
+      div1.className = "swiper-container mySwiper";
+      //下面一層的wrapper
+      var div_wrapper = document.createElement("div");
+      div_wrapper.className = "swiper-wrapper";
+
+      //card數量的部分
+      //var inputvalue = document.getElementById("cardnum").value;
+      var i;
+      for (i = 1; i <= document.getElementsByClassName("carddiv").length; i++) {
+        const nameElementlist = document.getElementsByName("button" + i);
+        const pictext = document.getElementById("pictext" + i).value;
+        const cardtitle = document.getElementById("cardtitle" + i).value;
+
+        var swiper_card = document.createElement("div");
+        swiper_card.className = 'swiper-slide';
+
+        //要加入圖片的部分
+        var imgpart =  document.createElement("div");
+        imgpart.className = 'imgpart';
+        var h = document.createElement("H2")  
+        var imgword =  document.createTextNode(pictext);
+        h.appendChild(imgword);
+        imgpart.appendChild(h);
+
+        //imagepart結束
+        swiper_card.appendChild(imgpart);
+        var h1topic = document.createElement('H1');
+        var topicword = document.createTextNode(cardtitle);
+        h1topic.appendChild(topicword);
+        swiper_card.appendChild(h1topic);
+        swiper_card.appendChild(document.createElement('hr'));
+
+        //迴圈製造按鈕內容
+        for(var j = 0; j < nameElementlist.length; j++){
+          var h3object = document.createElement('H3');
+          var buttonname = document.createTextNode(nameElementlist[j].value);
+          h3object.appendChild(buttonname);
+          swiper_card.appendChild(h3object);
+          swiper_card.appendChild(document.createElement('hr'));
+        }
+
+
+        div_wrapper.appendChild(swiper_card);
+      }
+
+      //pagnation的div
+      var swiper_pag = document.createElement("div");
+      swiper_pag.className = 'swiper-pagination';
+    
+      div1.appendChild(div_wrapper);
+      div1.appendChild(swiper_pag);
+      swiperstart.appendChild(div1);
+    
+      swiper = new Swiper(".mySwiper", {
+        //effect: "coverflow",
+        grabCursor: false,
+        centeredSlides: true,
+        slidesPerView: 1,
+        spaceBetween: 30,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    }
+
+    function resettext(id){
+      //恢復文字
+      
+      if(id.value == ""){
+        id.value = id.defaultValue;
+        id.className = "t1";   
+      }
+    } 
+
+    function cleartext(){
+      var number = document.getElementById("cardnum").value;
+      for(m = 1; m <=number; m++){
+          var buttonnum = document.getElementById("cardinput"+m).value;
+          for(n = 0; n < buttonnum; n++){
+            if(event.target.id == "payload"+m+(n+1)){
+              document.getElementById("payload"+m+(n+1)).value = "";
+              alert("Hi");
+            }
+          }
+      }
+    }
+
+    function btnadd(){
+      var number = document.getElementById("cardnum").value;
+      for(i = 1; i <= number; i++){
+        if(event.target.id == "add"+i){
+          var inputnum = document.getElementById('div'+i).getElementsByName('button'+i).length;
+          alert(inputnum);
+          //var newbtninput = document.createElement("input");
+          //newbtninput.type = 'text';
+        }
+      }
+    }
+
+  </script>
+
+
+  <script>
+    function pasteclick(){
+
+      var TextRange = document.createRange();
+      TextRange.selectNode(document.getElementById("demo"));
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(TextRange);
+      document.execCommand("copy");
+      alert("恭喜你！複製成功囉");
+
+      /*
+      var content = document.getElementById('demo').textContent;
+      console.log('content', content);
+      navigator.clipboard.writeText(content)
+        .then(() => {
+        alert("恭喜你！複製成功囉");
+        })
+        .catch(err => {
+        alert('Something went wrong', err);
+        })
+        */
+    }
+
+
+  </script>
+
+</head>
+
+<style>
+  div.leftpart{
+    overflow: auto;
+  }
+
+  
+.leftpart{
+  font-family: 微軟正黑體;
+
+}
+</style>
+
+<body>
+  <header>
+    <div class="container custom-container-width">
+        <!-- navbar from bootstrap (code) -->
+        <nav class="navbar navbar-expand-lg navbar-light ">
+            <!-- orign navbar-light -->
+            <a class="navbar-brand" href="#">
+                <img src="image/icon1.png" width="60" height="60" class="d-inline-block" alt="">
+                <p>牌卡生成小助手</p>
+                <h6>版本:3.0</h6>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              
+                <ul class="navbar-nav ml-lg-auto">
+                    <!-- ml-lg-auto 讓選項向右對齊 -->
+                    <!--
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">FAQ查詢 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> NLU查詢 </a>
+                    </li>
+                  -->
+                </ul>
+              
+            </div>
+        </nav>
+    </div>
+
+  </header> 
+
+
+
+  <div class = "mainpart">
+    <div class = "container">
+      <div class = "row">
+        <div class = "col-6">
+          <div class="leftpart" >
+            <h2>牌卡條件輸入</h2>
+            <hr>
+            <div class="left_top_part">
+              <div class="input-group mb-3">
+                <input type="text" id = "cardnum" class="form-control" placeholder="請輸入牌卡數量" aria-label="牌卡數量" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-primary" onclick = addCard()>確認</button>
+                  
+                </div>
+              </div>
+              <div id = "btnnum"></div>
+              <div id = "submit"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class = "col-3">
+          <div class="middlepart">
+            <h2>JSON 格式生成</h2>
+            <hr>
+            <p id ="demo">
+            </p>
+            <hr>
+            <div class="bot_but">
+              <button type="button" class="btn btn-outline-dark btn-sm" onclick = "pasteclick()">點我複製</button>
+            </div>
+          </div>
+        </div>
+
+        <div class = "col-3">
+          <div class="rightpart">
+            <h2>牌卡結果顯示</h2>
+            <hr>
+            <div id="show_html">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+<script>
+function myFunction() {
+  alert("Hello word");
+}
+
+function cardnum() {
+  const cardElement = document.getElementById("cardnum");
+  const card = cardElement.value;
+  alert("你的牌卡數量是" + card + "個");
+  for(i = 1; i <= card; i++){
+
+  }
+}
+</script>
+
+</body>
+</html>

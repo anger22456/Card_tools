@@ -1,0 +1,238 @@
+body{
+    background:#F9F9F9;
+}
+/*-------start banner design ---------*/
+header{
+    position: fixed;  /*讓響應的下拉不會推擠下方的元素*/
+    z-index: 10;
+    width: 100%;
+    height: 70px;
+    background: white; /*for testing the hight of banner*/
+}
+.navbar{
+    padding: 8px 0;
+}
+.navbar-brand{         /*設定banner中的大標題*/
+
+    display: inline-block;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.4em;
+    color: white;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+/*這邊針對icon和文字無法對齊的部分進行處理*/
+.navbar-brand img{
+    float: left;
+    display: inline-block;
+    position: relative;
+}
+.navbar-brand p{
+    margin-top: 20px;
+}
+
+.navbar-brand h6{   /*設定版本*/
+
+    display: inline-block;
+    font-weight: 600;
+    font-size: 0.5em;
+}
+
+.nav-item{             /*banner 中的幾個選項*/
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/*banner 選項周遭的區塊  nav-item.active 所在的頁面*/
+.navbar-light .navbar-nav .nav-link .nav-item:hover,
+.navbar-light .navbar-nav .nav-link .nav-item.active{
+    background: blue;
+    color: #fff;
+}
+.navbar-light .navbar-nav .nav-link .nav-item{
+    color: #262626;
+    padding: 5px 15px;
+}
+/*---------------------------------------------------------------------------------*/
+.leftpart{
+    height: 80vh;
+    margin-top: 110px;
+    background: white;
+    border: 1.5px solid #707070;
+    border-radius: 28px;
+}
+.leftpart h2{
+    font-size: 1.2rem;
+    font-family: 微軟正黑體;
+    margin-top: 18px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 13px;
+}
+
+.leftpart hr{
+    border: 1px solid #6d6a6a;
+}
+.left_top_part{
+    margin-left: 3%;
+}
+
+/*--leftpart內層的部分 swiper滾輪---------*/
+#lf_inside{
+    margin-top: 15px;
+    border: 1px solid #707070;
+    margin-left: 3%;
+    width: 94%;
+    height: 71%;
+    background: #F9F9F9;
+    overflow: hidden;
+
+}
+
+/*---leftpart下層的按鈕----------------------*/
+.bot_but button{
+    margin-top: 10px;
+    width:50%;
+    margin-left:25%;
+    margin-right:25%;
+}
+/*--------------------------------------------------------------------------------*/
+.middlepart{
+    height: 80vh;
+    margin-top: 110px;
+    background: white;
+    border: 1.5px solid #707070;
+    border-radius: 28px;
+    overflow: auto;
+}
+.middlepart h2{
+    font-size: 1.2rem;
+    font-family: 微軟正黑體;
+    margin-top: 18px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 13px;
+}
+.middlepart hr{
+    border: 1px solid #6d6a6a;
+}
+/*--------------------------------------------------------------------------------*/
+.rightpart{
+    height: 80vh;
+    margin-top: 110px;
+    background: white;
+    border: 1.5px solid #707070;
+    border-radius: 28px;
+}
+.rightpart h2{
+    font-size: 1.2rem;
+    font-family: 微軟正黑體;
+    margin-top: 18px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 13px;
+}
+.rightpart hr{
+    border: 1px solid #6d6a6a;
+}
+#show_html{
+    background:lightgray;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+/*-----swiper setting----------*/
+/*--swiper相關的css設定----------*/
+.swiper-container {
+    /*讓整個生成的東西可以貼合我的容器*/
+    width: 100%;
+    height: 100%;
+    
+  }
+
+  .swiper-slide {
+    font-size: 18px;
+    background: #fff;
+    overflow: auto;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+    text-align: center;
+    line-height: 15px;
+    font-size: 12px;
+    color: #000;
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: #007aff;
+  }
+  .imgpart{
+      width: 100%;
+      background: url('../image/pic.PNG');
+      background-size: contain;
+      height: 30%;
+  }
+  .imgpart h2{
+      position: relative;
+      display: inline-block;
+      margin-top: 50%;
+      margin-left: 25%;
+      color: red;
+      font-weight: bolder;
+  }
+ .swiper-slide h1{
+      font-weight: bolder;
+      color: green;
+      font-size: 20px;
+      margin-top: 10px;
+      text-align: center;
+  }
+  .swiper-slide h3{
+    font-weight: bolder;
+    text-align: center;
+  }
+
+  #div input{
+      position: relative;
+      display: inline-block;
+      margin-top: 5px;
+  }
+/*
+  .carddiv button{
+    float: left;
+    display: inline-block;
+    background: url("../image/remove.PNG");
+    background-size: cover;
+    border-radius: 100%;
+    padding: 10px 10px;
+    border : 1px solid red;
+  }
+  */
+
+  .contentdiv button{
+    float: right;
+    display: inline-block;
+    background: url("../image/remove.PNG");
+    background-size: cover;
+    border-radius: 100%;
+    padding: 10px 10px;
+    margin-right: 5rem;
+    border : 1px solid red;
+  }
+
+  .add{
+    border-radius: 100%;
+  }
